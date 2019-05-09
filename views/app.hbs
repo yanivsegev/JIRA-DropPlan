@@ -1,0 +1,21 @@
+{{!< layout}}
+<section id="content" class="aui-page-panel-content" role="main">
+  <header class="aui-page-header">
+    <div class="aui-page-header-inner">
+      <div class="aui-page-header-main">
+        <h2>Top Reporters</h2>
+      </div>
+    </div>
+  </header>
+  <div class="aui-page-panel">
+    <div class="aui-page-panel-inner">
+      <section id="root" class="aui-page-panel-content"/>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  // Allow React Components access current jwt
+  window.jwt = '{{ token }}';
+</script>
+<!-- TODO: Build Deploy app.js to our own CDN -->
+<script src="/js/app.js"></script>

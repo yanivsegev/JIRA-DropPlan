@@ -1,0 +1,39 @@
+{
+  "key": "jsd-top-reporters-addon",
+  "name": "JSD Top Reporters Addon",
+  "description": "This is an addon to show top reporters in Jira ServiceDesk projects",
+  "vendor": {
+    "name": "Nguyen, Manh Quoc Anh",
+    "url": "https://bitbucket.org/nmqanh"
+  },
+  "baseUrl": "{{localBaseUrl}}",
+  "links": {
+    "self": "{{localBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  },
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed"
+  },
+  "scopes": [
+    "READ"
+  ],
+  "modules": {
+    "jiraProjectPages": [
+      {
+        "iconUrl": "/img/ranking.svg",
+        "url": "/app?projectId=${project.id}",
+        "weight": 100,
+        "name": {
+          "value": "Top Reporters"
+        },
+        "key": "jsd-top-reporters-page"
+      }
+    ]
+  },
+  "apiMigrations": {
+    "gdpr": true
+  }
+}

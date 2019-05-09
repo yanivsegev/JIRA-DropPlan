@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="ap-local-base-url" content="{{localBaseUrl}}">
+  <title>{{title}}</title>
+
+  <!-- TODO: Build Deploy AUI css + other css to our own CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/@atlassian/aui@8.3.1/dist/aui/aui-prototyping.css" media="all">
+  <link rel="stylesheet" href="/css/addon.css" type="text/css" />
+  <script src="{{hostScriptUrl}}" type="text/javascript"></script>
+</head>
+<body>
+  <div id="page">
+    {{{body}}}
+  </div>
+</body>
+</html>
