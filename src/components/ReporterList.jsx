@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import reporterReducer, { getTopReporters } from '../ducks/reporters';
 import ReporterTable from './ReporterTable';
 
+const RefreshButton = ({ onRefresh }) => (
+  <button onClick={onRefresh} style={{ marginTop: 5 }} className="aui-button aui-button" resolved="">
+    <span className="aui-icon aui-icon-small aui-iconfont-refresh"></span>
+    Refresh
+  </button>
+);
+
+RefreshButton.propTypes = {
+  onRefresh: PropTypes.func.isRequired
+};
+
 const ReporterList = ({ projectId }) => {
   const [state, dispatch] = useReducer(reporterReducer, {
     topReporters: [],
@@ -21,13 +32,20 @@ const ReporterList = ({ projectId }) => {
       <div className="loader">Loading...</div>
     );
   }
+
+  if (!topReporters.length) {
+    return (
+      <div>
+        <div>No request has been created for this project.</div>
+        <RefreshButton onRefresh={handleRefreshClicked} />
+      </div>
+    )
+  }
+
   return (
     <div>
       <ReporterTable reporters={topReporters} />
-      <button onClick={handleRefreshClicked} style={{ marginTop: 5 }} className="aui-button aui-button" resolved="">
-        <span className="aui-icon aui-icon-small aui-iconfont-refresh"></span>
-        Refresh
-      </button>
+      <RefreshButton onRefresh={handleRefreshClicked} />
     </div>
   );
 };

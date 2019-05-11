@@ -28573,8 +28573,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ReporterList = function ReporterList(_ref) {
-  var projectId = _ref.projectId;
+var RefreshButton = function RefreshButton(_ref) {
+  var onRefresh = _ref.onRefresh;
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: onRefresh,
+    style: {
+      marginTop: 5
+    },
+    className: "aui-button aui-button",
+    resolved: ""
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "aui-icon aui-icon-small aui-iconfont-refresh"
+  }), "Refresh");
+};
+
+RefreshButton.propTypes = {
+  onRefresh: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.func.isRequired
+};
+
+var ReporterList = function ReporterList(_ref2) {
+  var projectId = _ref2.projectId;
 
   var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_1__["useReducer"])(_ducks_reporters__WEBPACK_IMPORTED_MODULE_3__["default"], {
     topReporters: [],
@@ -28607,18 +28625,17 @@ var ReporterList = function ReporterList(_ref) {
     }, "Loading...");
   }
 
+  if (!topReporters.length) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, "No request has been created for this project."), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(RefreshButton, {
+      onRefresh: handleRefreshClicked
+    }));
+  }
+
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReporterTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
     reporters: topReporters
-  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    onClick: handleRefreshClicked,
-    style: {
-      marginTop: 5
-    },
-    className: "aui-button aui-button",
-    resolved: ""
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "aui-icon aui-icon-small aui-iconfont-refresh"
-  }), "Refresh"));
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(RefreshButton, {
+    onRefresh: handleRefreshClicked
+  }));
 };
 
 ReporterList.propTypes = {
