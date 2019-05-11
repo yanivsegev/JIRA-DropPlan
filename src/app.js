@@ -1,6 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom'
+import { render } from 'react-dom';
+import ReporterList from './components/ReporterList';
+
+const urlParams = new URLSearchParams(window.location.search);
+const projectId = urlParams.get('projectId');
 
 render((
-  <div>Hello World</div>
+  <ReporterList projectId={projectId} />
 ), document.getElementById('root'));
