@@ -28577,7 +28577,8 @@ var ReporterList = function ReporterList(_ref) {
   var projectId = _ref.projectId;
 
   var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_1__["useReducer"])(_ducks_reporters__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    topReporters: []
+    topReporters: [],
+    isLoading: true
   }),
       _useReducer2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useReducer, 2),
       state = _useReducer2[0],
@@ -28589,10 +28590,35 @@ var ReporterList = function ReporterList(_ref) {
       dispatch: dispatch
     });
   }, []);
-  var topReporters = state.topReporters;
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReporterTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
+
+  var handleRefreshClicked = function handleRefreshClicked() {
+    return Object(_ducks_reporters__WEBPACK_IMPORTED_MODULE_3__["getTopReporters"])({
+      projectId: projectId,
+      dispatch: dispatch
+    });
+  };
+
+  var topReporters = state.topReporters,
+      isLoading = state.isLoading;
+
+  if (isLoading) {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "loader"
+    }, "Loading...");
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ReporterTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
     reporters: topReporters
-  });
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: handleRefreshClicked,
+    style: {
+      marginTop: 5
+    },
+    className: "aui-button aui-button",
+    resolved: ""
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "aui-icon aui-icon-small aui-iconfont-refresh"
+  }), "Refresh"));
 };
 
 ReporterList.propTypes = {
@@ -28693,12 +28719,13 @@ ReporterTable.propTypes = {
 /*!********************************!*\
   !*** ./src/ducks/reporters.js ***!
   \********************************/
-/*! exports provided: GET_TOP_REPORTER, GET_TOP_REPORTER_SUCCESS, getTopReporters, getTopReporterSuccess, default */
+/*! exports provided: GET_TOP_REPORTER_START, GET_TOP_REPORTER_DONE, GET_TOP_REPORTER_SUCCESS, getTopReporters, getTopReporterSuccess, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TOP_REPORTER", function() { return GET_TOP_REPORTER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TOP_REPORTER_START", function() { return GET_TOP_REPORTER_START; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TOP_REPORTER_DONE", function() { return GET_TOP_REPORTER_DONE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TOP_REPORTER_SUCCESS", function() { return GET_TOP_REPORTER_SUCCESS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTopReporters", function() { return getTopReporters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTopReporterSuccess", function() { return getTopReporterSuccess; });
@@ -28715,7 +28742,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var GET_TOP_REPORTER = 'GET_TOP_REPORTER';
+var GET_TOP_REPORTER_START = 'GET_TOP_REPORTER_START';
+var GET_TOP_REPORTER_DONE = 'GET_TOP_REPORTER_DONE';
 var GET_TOP_REPORTER_SUCCESS = 'GET_TOP_REPORTER_SUCCESS';
 var getTopReporters =
 /*#__PURE__*/
@@ -28731,6 +28759,12 @@ function () {
             projectId = _ref.projectId, dispatch = _ref.dispatch;
             _context.prev = 1;
             _context.next = 4;
+            return dispatch({
+              type: 'GET_TOP_REPORTER_START'
+            });
+
+          case 4:
+            _context.next = 6;
             return axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/top-reporters', {
               params: {
                 jwt: window.jwt,
@@ -28738,23 +28772,29 @@ function () {
               }
             });
 
-          case 4:
+          case 6:
             result = _context.sent;
             dispatch(getTopReporterSuccess(result.data));
-            _context.next = 11;
+            dispatch({
+              type: 'GET_TOP_REPORTER_DONE'
+            });
+            _context.next = 15;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](1);
+            dispatch({
+              type: 'GET_TOP_REPORTER_DONE'
+            });
             throw _context.t0;
 
-          case 11:
+          case 15:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 8]]);
+    }, _callee, null, [[1, 11]]);
   }));
 
   return function getTopReporters(_x) {
@@ -28769,9 +28809,19 @@ var getTopReporterSuccess = function getTopReporterSuccess(response) {
 };
 function reportersReducer(state, action) {
   switch (action.type) {
+    case GET_TOP_REPORTER_START:
+      return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: true
+      });
+
     case GET_TOP_REPORTER_SUCCESS:
       return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
         topReporters: action.response
+      });
+
+    case GET_TOP_REPORTER_DONE:
+      return _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, state, {
+        isLoading: false
       });
 
     default:
