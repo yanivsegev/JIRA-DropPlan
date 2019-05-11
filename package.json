@@ -7,7 +7,9 @@
     "start": "node -r esm app.js",
     "lint": "eslint --ext .jsx,.js app.js routes src",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "test-backend": "jest --runInBand --no-cache --config jest.config.js",
+    "test": "npm run test-backend"
   },
   "dependencies": {
     "atlassian-connect-express": "^3.4.0",
@@ -28,10 +30,12 @@
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
+    "@swissquote/crafty-preset-jest": "^1.6.0",
     "babel-loader": "^8.0.5",
     "eslint": "^5.15.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
+    "jest": "^24.8.0",
     "ngrok": "^2.3.0",
     "nodemon": "^1.19.0",
     "sqlite3": "^4.0.6",

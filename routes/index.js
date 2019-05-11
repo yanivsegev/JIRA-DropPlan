@@ -1,3 +1,5 @@
+import { fetchTopReportersFromRequests } from './jira-requests';
+
 export default function routes(app, addon) {
   // Redirect root path to /atlassian-connect.json,
   // which will be served by atlassian-connect-express.
@@ -12,6 +14,21 @@ export default function routes(app, addon) {
     // name of template and a json object to pass the context in.
     res.render('app', {
       title: 'Top Reporters'
+    });
+  });
+
+  app.get('/top-reporters', addon.authenticate(), (req, res) => {
+    const httpClient = addon.httpClient(req);
+    const projectId = req.query['projectId'];
+
+    fetchTopReportersFromRequests({ httpClient, projectId }).then(topReporters => {
+      res.status(200);
+      res.send(topReporters);
+    }).catch(error => {
+      res.status(400);
+      res.send({
+        error: error
+      });
     });
   });
 }
