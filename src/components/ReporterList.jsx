@@ -25,7 +25,6 @@ const ReporterList = ({ projectId }) => {
   }, []);
 
   const handleRefreshClicked = () => getTopReporters({ projectId, dispatch });
-
   const { topReporters, isLoading } = state;
   if (isLoading) {
     return (

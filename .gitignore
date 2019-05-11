@@ -6,3 +6,4 @@ false
 node_modules
 *.pem
 credentials.json
+public/*

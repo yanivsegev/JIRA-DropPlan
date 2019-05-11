@@ -11,7 +11,7 @@ export const reporterPropTypes = PropTypes.shape({
   avatarUrls: PropTypes.instanceOf(Object)
 });
 
-const ReporterRow = ({
+export const ReporterRow = ({
   reporter: {
     displayName,
     avatarUrls,

@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReporterRow snapshot should render ReporterRow correctly 1`] = `
+<tr>
+  <td
+    headers="name"
+  >
+    <a
+      href="http://local.test/secure/ViewProfile.jspa?name=name-1"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <span
+        className="aui-avatar aui-avatar-small"
+        style={
+          Object {
+            "marginRight": 5,
+            "verticalAlign": "middle",
+          }
+        }
+      >
+        <span
+          className="aui-avatar-inner"
+        >
+          <img
+            alt="Harry Potter"
+            src="http://local.test/avatar1.png"
+          />
+        </span>
+      </span>
+      Harry Potter
+    </a>
+  </td>
+  <td
+    headers="email"
+  >
+    harry.potter@gmail.com
+  </td>
+  <td
+    headers="requestsCount"
+  >
+    2
+  </td>
+</tr>
+`;
+
+exports[`ReporterTable snapshot should render ReporterTable correctly 1`] = `
+<table
+  className="aui"
+>
+  <thead>
+    <tr>
+      <th
+        id="name"
+      >
+        Name
+      </th>
+      <th
+        id="email"
+      >
+        Email
+      </th>
+      <th
+        id="requestsCount"
+      >
+        # of reported requests
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ReporterRow
+      key="1"
+      reporter={
+        Object {
+          "avatarUrls": Object {
+            "24x24": "http://local.test/avatar1.png",
+          },
+          "displayName": "Harry Potter",
+          "emailAddress": "harry.potter@gmail.com",
+          "key": "1",
+          "name": "name-1",
+          "requestsCount": 2,
+          "self": "http://local.test/rest/test",
+        }
+      }
+    />
+    <ReporterRow
+      key="2"
+      reporter={
+        Object {
+          "avatarUrls": Object {
+            "24x24": "http://local.test/avatar2.png",
+          },
+          "displayName": "Ron Weasley",
+          "emailAddress": "ron.weasley@gmail.com",
+          "key": "2",
+          "name": "name-2",
+          "requestsCount": 4,
+          "self": "http://local.test/rest/test",
+        }
+      }
+    />
+    <ReporterRow
+      key="3"
+      reporter={
+        Object {
+          "avatarUrls": Object {
+            "24x24": "http://local.test/avatar3.png",
+          },
+          "displayName": "Hermione Granger",
+          "emailAddress": "hermione.granger@gmail.com",
+          "key": "3",
+          "name": "name-3",
+          "requestsCount": 10,
+          "self": "http://local.test/rest/test",
+        }
+      }
+    />
+  </tbody>
+</table>
+`;
