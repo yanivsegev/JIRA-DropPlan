@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "nodemon --ignore src/ --ignore public/  -r esm app.js",
+    "dev": "foreman start -f Procfile.dev -p 3000",
+    "start-dev": "nodemon --ignore src/ --ignore public/  -r esm app.js",
     "start": "node -r esm app.js",
     "lint": "eslint --ext .jsx,.js app.js routes src",
     "build": "NODE_ENV=production webpack -p",

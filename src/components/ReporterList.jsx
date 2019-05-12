@@ -14,6 +14,12 @@ RefreshButton.propTypes = {
   onRefresh: PropTypes.func.isRequired
 };
 
+
+/*
+  TODO: Implement pagination on React Components
+  - Add PaginationBar
+  - Handle state to store current reporter of current page.
+*/
 const ReporterList = ({ projectId }) => {
   const [state, dispatch] = useReducer(reporterReducer, {
     topReporters: [],
