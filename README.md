@@ -27,9 +27,6 @@ This is a full-stack example showing how to make an add-on for Jira using React.
         # Install libraries
         npm install
 
-        # Install foreman
-        gem install foreman
-
 3. Setup test credentials for testing
 	* Type `cp credentials.json.sample credentials.json`.
 	* Edit `credentials.json` and fill in your credentials for the testing Atlassian Jira Account.
