@@ -3,36 +3,45 @@ This is a full-stack example showing how to make an add-on for Jira using React.
 
 ## Demo
 * Watch my unlisted demo on youtube [https://youtu.be/D7S-b-WNhUM](https://youtu.be/D7S-b-WNhUM)
-* Download from this repository [Download for Repo](demo/JiraServiceDesk_Top_Reporters_Addon_Demo.mov)
+* Download from this repository [Demo Video](demo/JiraServiceDesk_Top_Reporters_Addon_Demo.mov)
 * Or you can even try installing this app using [https://jsd-top-reporters.herokuapp.com/atlassian-connect.json](https://jsd-top-reporters.herokuapp.com/atlassian-connect.json)
 
 ## What have I done this in this project ?
 * Setup a `Node.js` with `express.js back-end` for a Jira Add-on using `atlassian-connect-express`.
 * Setup a `React.js` app using `webpack` and `babel`.
 * Setup `eslint` (linting) and `jest` (testing) for back-end and front-end.
-        * Using `enzyme` for React testing.
-* Build `/top-reporters API` endpoint for backend
+
+	* Using `enzyme` for React testing.
+
+* Build `/top-reporters API` endpoint for backend.
 * Build React Components for showing Top Reporters in a Jira Project
-        * Using pure functional React components
-        * Using `React Hooks` for fetching APIs and manage ducks states.
+
+	* Using `AUI 8.3.1` to follow and apply Atlassian Design guidelines.
+	* Using `pure functional` React components.
+	* Using `React Hooks` for fetching APIs and manage ducks states.
+
 * Write `Unit Tests` for both back-end and front-end with `jest` and `enzyme`.
-* Enable easy deployment to `Heroku` (check guide below)
+* Enable easy deployment to `Heroku` (check guide below).
 
 ## Setup guide for development
 1. Make sure your Environment is ready!
+
 	* Node 8.x or above.
-	* Install latest npm with `npm install -g npm@latest`
+	* Install latest npm with `npm install -g npm@latest`.
 	* Pull the latest source code to your computer.
 	* `cd` to the folder of the add-on.
+
 2. Install libraries
 
         # Install libraries
         npm install
 
 3. Setup test credentials for testing
+
 	* Type `cp credentials.json.sample credentials.json`.
 	* Edit `credentials.json` and fill in your credentials for the testing Atlassian Jira Account.
 	* Go to your Jira Settings -> Manage Apps -> Settings -> Turn on `Development mode`.
+
 4. Start hacking by running
 
         npm run dev
