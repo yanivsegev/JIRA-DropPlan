@@ -2,7 +2,9 @@
 This is a full-stack example showing how to make an add-on for Jira using React.js and Node.js to query top reporters for a Jira Project.
 
 ## Demo
-* You can try installing this app via: [https://jsd-top-reporters.herokuapp.com/atlassian-connect.json](https://jsd-top-reporters.herokuapp.com/atlassian-connect.json)
+* Watch my unlisted demo on youtube [https://youtu.be/D7S-b-WNhUM](https://youtu.be/D7S-b-WNhUM)
+* Download from this repository [Download for Repo](demo/JiraServiceDesk_Top_Reporters_Addon_Demo.mov)
+* Or you can even try installing this app using [https://jsd-top-reporters.herokuapp.com/atlassian-connect.json](https://jsd-top-reporters.herokuapp.com/atlassian-connect.json)
 
 ## What have I done this in this project ?
 * Setup a `Node.js` with `express.js back-end` for a Jira Add-on using `atlassian-connect-express`.
