@@ -14,7 +14,7 @@
     "test": "npm run test-backend && npm run test-frontend"
   },
   "dependencies": {
-    "atlassian-connect-express": "^3.4.0",
+    "atlassian-connect-express": "^3.5.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",

@@ -46,7 +46,7 @@ export const fetchTopReportersFromRequests = async function ({ httpClient, proje
 
     for (let i = 0; i < numberOfPages; ++i) {
       promises.push(asyncGet({
-        url: `/rest/api/3/search?jql=project=${projectId}&maxResults=${FETCH_PER_PAGE}&fields=reporter&startAt=${i * FETCH_PER_PAGE}`,
+        url: `/rest/api/3/search?jql=sprint%20in%20openSprints()%20and%20project=${projectId}&maxResults=${FETCH_PER_PAGE}&fields=reporter%2Csummary%2Cdescription&startAt=${i * FETCH_PER_PAGE}`,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -61,17 +61,32 @@ export const fetchTopReportersFromRequests = async function ({ httpClient, proje
     issues.forEach(issue => {
       const reporter = issue.fields.reporter;
       const reporterId = reporter.key;
+      const issueObj = { summary: issue.fields.summary, description: issue.fields.description };
 
+      console.log('-------------------------------------------------------------------------------------------------------------------------');
+      console.log(issue);
+      console.log('-------------------------------------------------------------------------------------------------------------------------');
+      
       if (reporterId in reportersDict) {
-        reportersDict[reporterId].requestsCount += 1;
+        const curr = reportersDict[reporterId];
+        reportersDict[reporterId] = {
+          ...curr,
+          issues: [...curr.issues , issueObj] ,
+          requestsCount: curr.requestsCount + 1
+        };
       } else {
         reportersDict[reporterId] = {
           ...reporter,
+          issues: [issueObj] ,
           requestsCount: 1
         };
       }
     });
 
+    console.log('-------------------------------------------------------------------------------------------------------------------------');
+    console.log(reportersDict);
+    console.log('-------------------------------------------------------------------------------------------------------------------------');
+   
     return Object.values(reportersDict).sort((a, b) => b.requestsCount - a.requestsCount);
   } catch (err) {
     console.error(err);

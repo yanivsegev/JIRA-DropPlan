@@ -13,6 +13,9 @@ export const getTopReporters = async ({ projectId, dispatch }) => {
         projectId
       }
     });
+
+    console.log(result.data);
+
     dispatch(getTopReporterSuccess(result.data));
     dispatch({ type: 'GET_TOP_REPORTER_DONE' });
   } catch(e) {

@@ -8,8 +8,21 @@ export const reporterPropTypes = PropTypes.shape({
   displayName: PropTypes.string.isRequired,
   emailAddress: PropTypes.string.isRequired,
   requestsCount: PropTypes.number.isRequired,
+  issues: PropTypes.number.isRequired,
   avatarUrls: PropTypes.instanceOf(Object)
 });
+
+export const Issue = ({
+  issue: {
+    summary,
+    description
+  }
+}) => (
+
+  <div>
+    <span>{summary}</span> 
+  </div>
+);
 
 export const ReporterRow = ({
   reporter: {
@@ -18,7 +31,8 @@ export const ReporterRow = ({
     self,
     name,
     emailAddress,
-    requestsCount
+    requestsCount,
+    issues
   }
 }) => (
   <tr>
@@ -37,7 +51,14 @@ export const ReporterRow = ({
       </a>
     </td>
     <td headers="email">{emailAddress}</td>
-    <td headers="requestsCount">{requestsCount}</td>
+    <td headers="requestsCount">
+ 
+ {issues.map(issue => (  
+   
+        <Issue issue={issue} /> 
+ )) }
+           
+       </td>
   </tr>
 );
 
